@@ -18,7 +18,11 @@ def run():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    bird.jump()
+        
+        bird.apply_gravity()
         background.display(screen)  
         bird.displays(screen)
         ground.display(screen)
