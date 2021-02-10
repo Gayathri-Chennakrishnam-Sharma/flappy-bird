@@ -1,10 +1,11 @@
+from entities.sprite import Sprite
 import os
 import pathlib
 
 import pygame
 
 
-class Background:
+class Background(Sprite):
     def __init__(self) -> None:
         current_path = pathlib.Path(__file__).parent.parent.absolute()
         path =  os.path.join(current_path, "assets", "images", "background.png")

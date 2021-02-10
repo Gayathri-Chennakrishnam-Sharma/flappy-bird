@@ -20,7 +20,7 @@ def run():
             if event.type == pygame.QUIT: sys.exit()
 
         background.display(screen)  
-        bird.display(screen)
+        bird.displays(screen)
         ground.display(screen)
         pygame.display.flip()
 
