@@ -1,12 +1,10 @@
+from entities.ground import Ground
 from entities.bird import Bird
 from entities.background import Background
 import sys
 from util.constants import Constants
 from util.colors import Colors
 import pygame
-import pathlib
-
-import os
 
 
 def run():
@@ -15,6 +13,7 @@ def run():
     
     background = Background()
     bird = Bird()
+    ground = Ground()
 
     while True:
         for event in pygame.event.get():
@@ -22,6 +21,7 @@ def run():
 
         background.display(screen)  
         bird.display(screen)
+        ground.display(screen)
         pygame.display.flip()
 
 
