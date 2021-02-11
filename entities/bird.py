@@ -7,23 +7,28 @@ import pygame
 
 
 class Bird(Sprite):
+    bird_frame = 0
     def __init__(self):
         current_path = pathlib.Path(__file__).parent.parent.absolute()
         path =  os.path.join(current_path, "assets", "images", "bird.png")
-        self.position = Constants.width//2, Constants.height//2
         self.image = pygame.image.load(path)
+        self.bird_rect = self.image.get_rect()
+        self.bird_rect.center = (400, 200)
+        self.accelaration = 0
 
     def jump(self):
-        x, y = self.position
-        self.position = x, y - 20
+        self.accelaration = 0
+        self.accelaration -= 2
 
-    def set_position(self, position):
-        x, y = self.position
-        self.position = x, y + position
+    def animate(self):
+        Bird.bird_frame = (Bird.bird_frame + 1) % 3
+    
+    def apply_gravity(self):
+        gravity = 0.015
+        self.accelaration += gravity
 
-
-    def displays(self, screen):
-        bird_rect = self.image.get_rect()
-        x, y = self.position
-        bird_rect.center = x, y
-        screen.blit(self.image, bird_rect)   
+    def display(self, screen):
+        self.bird_rect.centery += self.accelaration
+        screen.blit(self.image, self.bird_rect, (Bird.bird_frame * Constants.bird_width, 0, Constants.bird_width, Constants.bird_height)) 
+    
+    

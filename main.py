@@ -15,20 +15,20 @@ def run():
     bird = Bird()
     ground = Ground()
 
-    dy = 0
-    gravity = 0.02
+    pygame.time.set_timer(pygame.USEREVENT, 200)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    dy -= 12
-                    bird.set_position(dy)
+                    bird.jump()
+            if event.type == pygame.USEREVENT:
+                bird.animate()
         
-        dy += gravity
-        bird.set_position(dy)
+        bird.apply_gravity()
         background.display(screen)  
-        bird.displays(screen)
+        bird.display(screen)
         ground.display(screen)
         pygame.display.flip()
 
