@@ -9,3 +9,6 @@ class Constants:
 
     bird_width = 92
     bird_height = 64
+
+    pipe_width = 138
+    pipe_height = 793

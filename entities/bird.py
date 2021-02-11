@@ -1,3 +1,4 @@
+from mechanics.collition_detector import CollitionDetector
 from entities.sprite import Sprite
 import os
 import pathlib
@@ -26,6 +27,19 @@ class Bird(Sprite):
     def apply_gravity(self):
         gravity = 0.015
         self.accelaration += gravity
+
+    def collition_detected(self, pipes):
+        collition_detector = CollitionDetector()
+        for pipe in pipes:
+            if collition_detector.is_collided_with(self.bird_rect, pipe):
+                return True
+
+        if self.bird_rect.midbottom[1] >= Constants.height:
+            return True
+
+        if self.bird_rect.midtop[1] <= 0:
+            return True
+        return False
 
     def display(self, screen):
         self.bird_rect.centery += self.accelaration
