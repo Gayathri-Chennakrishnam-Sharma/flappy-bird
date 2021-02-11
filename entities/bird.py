@@ -17,9 +17,9 @@ class Bird(Sprite):
         x, y = self.position
         self.position = x, y - 20
 
-    def apply_gravity(self):
+    def set_position(self, position):
         x, y = self.position
-        self.position = x, y + 2
+        self.position = x, y + position
 
 
     def displays(self, screen):
